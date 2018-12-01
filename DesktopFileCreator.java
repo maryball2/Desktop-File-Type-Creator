@@ -21,7 +21,9 @@ public class DesktopFileCreator {
 	//Creates the File
 	public static void createDesktopFile(String fileName, String exe, String ico) throws IOException {
 		List<String> lines = Arrays.asList("[Desktop Entry]", "Encoding=UTF-8","Version=1.0","Type=Application","Terminal=false","Exec=" +exe,"Name=" +fileName,"Icon=" + ico);
-		Path file = Paths.get(fileName + ".desktop");
+		Path file = Paths.get(System.getProperty( "user.home" ) + "/.local/share/applications/" + fileName + ".desktop");
+
+
 		Files.write(file, lines, Charset.forName("UTF-8"));
 	}
 
@@ -37,5 +39,8 @@ public class DesktopFileCreator {
 		String iconPath = reader.nextLine();
 		reader.close();
 		createDesktopFile(fileName, executableFile, iconPath);
+		System.out.print("\u001b[2J");
+		System.out.flush();
+		System.out.println("Desktop File Created Successfully!");
 	}
 }
