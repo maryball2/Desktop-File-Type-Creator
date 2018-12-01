@@ -4,4 +4,4 @@ Have you ever downloaded a program from github and installed it only to have it 
 Download the .jar for the progam and the .java for the source
 
 Current work that needs to be done:
-  Have the program automatically move the .desktop file to ~/.local/share/applications
+  Improve effeciency
