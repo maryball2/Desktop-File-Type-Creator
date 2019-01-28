@@ -1,7 +1,6 @@
 /*
  Title: This creates a .desktop file in java
  Author: Riley Carpenter
- TODO: Make the program able to move the .desktop file to ~/.local/share/applications
  */
 
 
@@ -23,8 +22,12 @@ public class DesktopFileCreator {
 		List<String> lines = Arrays.asList("[Desktop Entry]", "Encoding=UTF-8","Version=1.0","Type=Application","Terminal=false","Exec=" +exe,"Name=" +fileName,"Icon=" + ico);
 		Path file = Paths.get(System.getProperty( "user.home" ) + "/.local/share/applications/" + fileName + ".desktop");
 
+		//Sets File's Permissions
+		Set<PosixFilePermission> ownerWritable = PosixFilePermissions.fromString("rw-r--r--");
+		FileAttribute<?> permissions = PosixFilePermissions.asFileAttribute(ownerWritable);
 
-		Files.write(file, lines, Charset.forName("UTF-8"));
+
+		Files.write(file, permissions, lines, Charset.forName("UTF-8"));
 	}
 
 	
